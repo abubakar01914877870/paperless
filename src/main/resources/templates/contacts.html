@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta charset="ISO-8859-1">
+<title>Contacts Page</title>
+
+<th:block th:include="fragments/headerinc :: head"></th:block>
+
+
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<th:block th:include="fragments/header :: header"></th:block>
+
+<div class="col-md-4 offset-md-4">
+
+ <div class="alert alert-success alert-dismissible fade show">
+    <strong>Success!</strong> 
+  </div>
+
+<form class="form-horizontal" th:action=@{/dosavecontacts} method="post">
+<fieldset>
+
+<!-- Form Name -->
+<h1 align="left">Save Contacts</h1>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="Contacts_name">Name</label>  
+  <div>
+  <input id="contacts_name" name="contacts_name" type="text" placeholder="" required="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="control-label" for="contacts_email">Email</label>  
+  <div>
+  <input id="contacts_email" name="contacts_email" type="email" required="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="control-label" for="save_contacts"></label>
+  <div>
+    <button  type="submit" value="submit" class="btn btn-primary">Save</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+<a href="#" th:text="${message}"></a>
+
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+  
+   <th:block th:each="contacts : ${Allcontacts}">
+  
+    <tr>
+      <td th:text="${contacts.contacts_id}"></td>
+      <td th:text="${contacts.contacts_name}"></td>
+      <td th:text="${contacts.contacts_email}"></td>
+    </tr>
+    </tbody>
+    </table>
+    
+</div>
+
+
+<th:block th:include="fragments/footer :: footer"></th:block>
+</body>
+</html>
